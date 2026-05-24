@@ -1,0 +1,16 @@
+PORTING ISSUES
+File,Type,Line,Pattern,Suggestion,Code
+src/demo_solaris_original.c,C,3,sys/systeminfo.h,Replace with sys/utsname.h,#include <sys/systeminfo.h>
+src/demo_solaris_original.c,C,4,sys/lwp.h,Use POSIX threads instead,#include <sys/lwp.h>
+src/demo_solaris_original.c,C,16,sysinfo(,Replace with uname(),"sysinfo(SI_SYSNAME, buf, sizeof(buf));"
+src/demo_solaris_original.c,C,22,thr_create(,Replace with pthread_create(),"thr_create(NULL, 0, NULL, NULL, 0, &tid);"
+src/demo_solaris_original.c,C,23,thr_join(,Replace with pthread_join(),"thr_join(tid, NULL, NULL);"
+src/demo_solaris_original.c,C,27,gethrtime(,Replace with clock_gettime(CLOCK_MONOTONIC),hrtime_t t = gethrtime();
+
+FUNCTION COMPLEXITY
+File,Function,Line,LOC,Complexity,Risk
+src/demo.c,check_memory,20,10,3,Low
+src/demo.c,get_os_info,7,12,2,Low
+src/demo_solaris_original.c,get_os_info,14,5,1,Low
+src/demo_solaris_original.c,create_worker_thread,20,5,1,Low
+src/demo_solaris_original.c,get_time,26,4,1,Low
